@@ -4348,7 +4348,6 @@ HttpProvider.prototype.prepareRequest = function (async) {
  * @return {Object} result
  */
 HttpProvider.prototype.send = function (payload) {
-  console.log('send',payload)
   var request = this.prepareRequest(false);
   try {
     request.send(JSON.stringify(payload));
@@ -4375,7 +4374,6 @@ HttpProvider.prototype.send = function (payload) {
  * @param {Function} callback triggered on end with (err, result)
  */
 HttpProvider.prototype.sendAsync = function (payload, callback) {
-  console.log('sendAsync',payload, callback)
   var request = this.prepareRequest(true);
   request.onreadystatechange = function () {
     if (request.readyState === 4 && request.timeout !== 1) {
@@ -6352,6 +6350,7 @@ var RequestManager = function (provider) {
  * @return {Object}
  */
 RequestManager.prototype.send = function (data) {
+    throw new Error('Synchronous call is not supported at this time')
     if (!this.provider) {
         console.error(errors.InvalidProvider());
         return null;
@@ -6363,7 +6362,6 @@ RequestManager.prototype.send = function (data) {
     if (!Jsonrpc.isValidResponse(result)) {
         throw errors.InvalidResponse(result);
     }
-
     return result.result;
 };
 
