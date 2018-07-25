@@ -8,9 +8,10 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "bignumber.js": "git+https://github.com/frozeman/bignumber.js-nolookahead.git",
+    "bignumber.js": "git+https://github.com/Axulai/bignumber.js-nolookahead.git",
     "crypto-js": "^3.1.4",
     "utf8": "^2.1.1",
+    "wxhttprequest": "^0.0.5",
     "xhr2-cookies": "^1.1.0",
     "xmlhttprequest": "*"
   },
