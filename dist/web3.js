@@ -6350,12 +6350,10 @@ var RequestManager = function (provider) {
  * @return {Object}
  */
 RequestManager.prototype.send = function (data) {
-    throw new Error('Synchronous call is not supported at this time')
     if (!this.provider) {
         console.error(errors.InvalidProvider());
         return null;
     }
-
     var payload = Jsonrpc.toPayload(data.method, data.params);
     var result = this.provider.send(payload);
 
@@ -6441,8 +6439,6 @@ RequestManager.prototype.setProvider = function (p) {
  */
 RequestManager.prototype.startPolling = function (data, pollId, callback, uninstall) {
     this.polls[pollId] = {data: data, id: pollId, callback: callback, uninstall: uninstall};
-
-
     // start polling
     if (!this.timeout) {
         this.poll();
